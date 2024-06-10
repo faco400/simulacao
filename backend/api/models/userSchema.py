@@ -11,7 +11,6 @@ class UserBase(BaseModel):
     nome: str
     email: str
     senha: str
-    # data_criacao 
     tipo: typeUser
 
 

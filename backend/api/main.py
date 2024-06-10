@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from backend.db.database import initialize_database
+from db.database import initialize_database
 
-from backend.api.controllers.userController import users
+from api.controllers.userController import users
 
 from fastapi.middleware.cors import CORSMiddleware
 

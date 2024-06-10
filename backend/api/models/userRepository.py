@@ -1,6 +1,6 @@
 from typing import List
 from sqlalchemy.orm import Session
-from backend.api.models.user import User
+from api.models.user import User
 
 class UserRepository:
 
