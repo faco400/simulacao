@@ -1,5 +1,4 @@
-from typing import List
-from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi import APIRouter, status, Depends
 
 from api.models.userSchema import UserRequest, UserResponse
 from api.models.user import User
@@ -7,6 +6,8 @@ from api.models.userRepository import UserRepository
 from db.database import get_database
 
 from sqlalchemy.orm import Session
+
+from api.helper.encrypt import encrypt
 
 users = APIRouter(
     prefix = '/users',
@@ -22,10 +23,14 @@ def create(
     request: UserRequest, 
     database: Session = Depends(get_database)
     ):
+    try:
 
-    req = request.dict()
+        req = request.dict()
+        req['senha'] = encrypt(req['senha'])
 
-    '''Cria e salva um usuário e carteira'''
-    user = UserRepository.create(User(**req), database=database)
+        '''Cria e salva um usuário e carteira'''
+        user = UserRepository.create(User(**req), database=database)
+    except:
+        raise
 
     return user
