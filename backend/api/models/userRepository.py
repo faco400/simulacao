@@ -19,3 +19,15 @@ class UserRepository:
         database.rollback()
         raise
     return user
+
+  @staticmethod
+  def get(email: str, database: Session) -> User:
+    '''Função para criar um usuario'''
+    try:
+        existing = database.query(User).filter(User.email == email).first()
+        if not existing:
+          raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Usuario nao existe')
+
+    except:
+        raise
+    return existing

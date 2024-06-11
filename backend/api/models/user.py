@@ -11,7 +11,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome: str = Column(String(100), nullable=False)
     email: str = Column(String(100), nullable=False, unique=True)
-    senha: str = Column(LargeBinary, nullable=False)
+    senha: str = Column(String(256), nullable=False)
     data_criacao = Column(DateTime, default=datetime.datetime.now)
     tipo: str = Column(String(100), nullable=False)
 
