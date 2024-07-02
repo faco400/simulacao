@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from db.database import initialize_database
 
 from api.controllers.userController import users
+from api.helper.authorization import token # testando
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -20,6 +21,7 @@ api.add_middleware(
 )
 
 api.include_router(users)
+api.include_router(token) #testando token
 
 @api.on_event("startup")
 async def startup():

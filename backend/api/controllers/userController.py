@@ -7,7 +7,7 @@ from db.database import get_database
 
 from sqlalchemy.orm import Session
 
-from api.helper.encrypt import encrypt
+from api.helper.authorization import get_password_hash
 
 users = APIRouter(
     prefix = '/users',
@@ -21,12 +21,11 @@ users = APIRouter(
 )
 def create(
     request: UserRequest, 
-    database: Session = Depends(get_database)
+    database: Session = Depends(get_database),
     ):
     try:
-
         req = request.dict()
-        req['senha'] = encrypt(req['senha'])
+        req['senha'] = get_password_hash(req['senha'])
 
         '''Cria e salva um usuário e carteira'''
         user = UserRepository.create(User(**req), database=database)

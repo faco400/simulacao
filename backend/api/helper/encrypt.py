@@ -20,13 +20,14 @@ def encrypt(password):
   f = Fernet(b'6eB5eYRnCPABkGh5uac1LojrOTW8aZhbmFahCSkrNzk=')
 
   token = f.encrypt(password.encode('ascii'))
-  return token
+  return token.decode('ascii')
 
-def decrypt():
+def decrypt(hashed_password):
   f = Fernet(b'6eB5eYRnCPABkGh5uac1LojrOTW8aZhbmFahCSkrNzk=')
 
-  teste = f.decrypt(b'gAAAAABmZ4H84h7-uZjiMCSVs9yPgxYaDYx-TXsLKT58IufuQamDhlFISTiFZh_ZDk0U6U09CzmTaI4FM3tx7y0jf-Edv_xmiA==')
-  print(teste.decode('ascii'))
+  password = f.decrypt(hashed_password)
+  print(password.decode('ascii'))
+  return password.decode('ascii')
 
 # simulando encriptografia
 # print(generate_key())
