@@ -30,7 +30,7 @@ const SignUpScreen = ({ navigation }) => {
 
     console.log(userData)
 
-    const apiUrl = 'http://192.168.1.14:8084/users/register';
+    const apiUrl = 'http://192.168.1.14:8081/users/register';
  
 
     await fetch(apiUrl, {
